@@ -1,0 +1,76 @@
+{
+  "records": [
+    {
+      "project": "project1",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    },
+    {
+      "project": "project2",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    },
+    {
+      "project": "project3",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    },
+    {
+      "project": "project4",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    },
+    {
+      "project": "project5",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    },
+    {
+      "project": "project6",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    },
+    {
+      "project": "project7",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    },
+    {
+      "project": "project8",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    },
+    {
+      "project": "project9",
+      "coverage": "35.5",
+      "techDebt": "1100",
+      "vulnerability": "22",
+      "codeSmell": "15",
+      "testcase": "17"
+    }
+  ]
+}
