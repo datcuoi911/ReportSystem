@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SonarQube Report</title>
+
+
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"/>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- jQuery Validation -->
+<script src="js/jquery.validate.min.js"></script>
+
+<!-- jQuery UI -->
+<link href="css/jquery-ui.min.css" rel="stylesheet" />
+<script src="js/jquery-ui.min.js"></script>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<script src="js/bootstrap.min.js"></script>
+
+<!-- eShop -->
+<link href="css/eshop.css" rel="stylesheet" />
+
+
+<style>
+#chartdiv {
+	width: 100%;
+	height: 500px;
+}
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/pie.js"></script>
+<script
+	src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet"
+	href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+	type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<!-- Chart code -->
+<script>
+	var chart = AmCharts
+			.makeChart(
+					"chartdiv",
+					{
+						"type" : "pie",
+						"theme" : "light",
+						"dataProvider" : [ {
+							"country" : "Lithuania",
+							"value" : 260
+						}, {
+							"country" : "Ireland",
+							"value" : 201
+						}, {
+							"country" : "Germany",
+							"value" : 65
+						}, {
+							"country" : "Australia",
+							"value" : 39
+						}, {
+							"country" : "UK",
+							"value" : 19
+						}, {
+							"country" : "Latvia",
+							"value" : 10
+						} ],
+						"valueField" : "value",
+						"titleField" : "country",
+						"outlineAlpha" : 0.4,
+						"depth3D" : 15,
+						"balloonText" : "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+						"angle" : 30,
+						"export" : {
+							"enabled" : true
+						}
+					});
+</script>
+
+</head>
+<body>
+	<div class="container">
+
+
+		<!-- Header  -->
+		<header class="nn-header row">
+			<img class="img-responsive" src="images/main-logo.png" />
+		</header>
+		<!-- End Header  -->
+
+
+		<!-- Nav  -->
+		<div class="navbar navbar-inverse row">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse">
+				<!--Menu-->
+				<ul class="nav navbar-nav">
+					<li><a href="home/index.php"><span
+							class="glyphicon glyphicon-home"></span> Trang chủ </a></li>
+					<li><a href="home/about.php"><span
+							class="glyphicon glyphicon-th-list"></span> Giới thiệu</a></li>
+					<li><a href="home/contact.php"><span
+							class="glyphicon glyphicon-earphone"></span> Liên hệ</a></li>
+					<li><a href="home/feedback.php"><span
+							class="glyphicon glyphicon-envelope"></span> Góp ý</a></li>
+					<li><a href="home/faq.php"><span
+							class="glyphicon glyphicon-question-sign"></span> Hỏi đáp</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
+							Tài khoản <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="">Đăng nhập</a></li>
+							<li><a href="">Quên mật khẩu</a></li>
+							<li><a href="">Đăng ký thành viên</a></li>
+							<li class="divider"></li>
+							<li><a href="">Đăng xuất</a></li>
+							<li><a href="">Đổi mật khẩu</a></li>
+							<li><a href="">Cập nhật hồ sơ</a></li>
+							<li class="divider"></li>
+							<li><a href="">Đơn hàng</a></li>
+							<li><a href="">Hàng đã mua</a></li>
+						</ul></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#" data-lang="en">English</a></li>
+					<li><a href="#" data-lang="vi">Tiếng Việt</a></li>
+				</ul>
+				<!--End Menu-->
+			</div>
+		</div>
+		<!-- End Nav  -->
+
+
+		<!-- Content  -->
+		<div class="nn-sheet row">
+
+			<article class="col-sm-9">
+				<div class="nn-body">
+
+				</div>
+			</article>
+			
+			
+			<!-- Chart -->
+			<div id="chartdiv"></div>
+		</div>
+		<!-- End Content  -->
+
+
+		<!-- Footer  -->
+		<footer class="panel panel-default row">
+			<div class="panel-heading">
+				<p class="text-center">Hải Triều &copy; 2017. All rights
+					reserved.</p>
+			</div>
+		</footer>
+		<!-- End Footer  -->
+	</div>
+</body>
+</html>
