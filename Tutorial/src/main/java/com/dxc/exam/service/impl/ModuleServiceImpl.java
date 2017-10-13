@@ -42,7 +42,8 @@ public class ModuleServiceImpl implements ModuleService {
 			for (int j = 0; j < listProject.size(); j++) {
 				String temp = listProject.get(j).getName().replace(" ", "-");
 				if (module.getKey().contains(temp)) {
-					module.setProjectId(listProject.get(j).getId()); // set id project
+					module.setProjectId(listProject.get(j).getId()); // set id
+																		// project
 				}
 			}
 
@@ -63,7 +64,8 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public int findId(String key) {
-		return moduleDAO.findIdModule(key);
+		ArrayList<Integer> arr = moduleDAO.getIdModule(key);
+		return arr.get(0);
 	}
 
 	@Override

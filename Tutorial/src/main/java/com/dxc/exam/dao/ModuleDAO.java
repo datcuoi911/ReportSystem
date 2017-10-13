@@ -10,5 +10,5 @@ public interface ModuleDAO {
 
 	public ArrayList<Integer> getIdModule();
 	
-	public int findIdModule(String key);
+	public ArrayList<Integer> getIdModule(String key);
 }

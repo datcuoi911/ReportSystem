@@ -29,58 +29,60 @@ public class DailyReportServiceImpl implements DailyReportService {
 	APIService apiService;
 
 	@Override
-	public void getValues(String linkAPI) throws ParseException, IOException, JSONException {
-		
-		
-		/*
-		 * 	example: date today = 12/10/2017
-			SELECT COUNT (date) FROM daily_report WHERE (datepart(yy,date)=2017) AND (datepart(mm,date)=10) AND (datepart(dd,date)=12);
-			> 0 => update all where date = 12/10/2017
-			= 0 => insert
-		*
-		*/
+	public void saveOrUpdate(String linkAPI) throws ParseException, IOException, JSONException {
 
 		// initializer
 		List<String> listKey = apiService.getKeyAPI(linkAPI);
 
-		// get values
-		for (int i = 0; i < listKey.size(); i++) {
-			
-			
-			DailyReport dailyReport = new DailyReport();
-			JSONArray arrMeasures = apiService.getValueAPI(listKey.get(i));
+		ArrayList<Date> arrDate = dailyReportDAO.getDateReport(new Date());
 
-			dailyReport.setModuleId(moduleService.findId(listKey.get(i))); // set module id
+		int check = arrDate.size();
 
-			Date today = new Date();
-			
-			
-			
-			dailyReport.setDate(new Date()); // set module date
-
-			// set module values
-			for (int j = 0; j < arrMeasures.length(); j++) {
-				JSONObject temp = (JSONObject) arrMeasures.get(j);
-				if (temp.get("metric").toString().equals("coverage")) {
-					dailyReport.setCoverage(Double.parseDouble(temp.get("value").toString()));
-				}
-				if (temp.get("metric").toString().equals("code_smells")) {
-					dailyReport.setCodeSmell(Integer.parseInt(temp.get("value").toString()));
-				}
-				if (temp.get("metric").toString().equals("vulnerabilities")) {
-					dailyReport.setVulnerability(Integer.parseInt(temp.get("value").toString()));
-				}
-				if (temp.get("metric").toString().equals("tests")) {
-					dailyReport.setTestcase(Integer.parseInt(temp.get("value").toString()));
-				}
-				if (temp.get("metric").toString().equals("sqale_index")) {
-					dailyReport.setTechDebt(Integer.parseInt(temp.get("value").toString()));
-				}
-
+		if (check == 0) {
+			for (int i = 0; i < listKey.size(); i++) {
+				DailyReport dailyReport = getValues(listKey.get(i));
+				dailyReportDAO.insert(dailyReport);
+				System.out.println(" just Insert ");
 			}
-			dailyReportDAO.insert(dailyReport);
+		} else {
+			for (int i = 0; i < listKey.size(); i++) {
+				DailyReport dailyReport = getValues(listKey.get(i));
+				dailyReportDAO.update(dailyReport);
+				System.out.println(" just Update ");
+			}
 		}
+	}
 
+	@Override
+	public DailyReport getValues(String key) throws ParseException, IOException, JSONException {
+
+		DailyReport dailyReport = new DailyReport();
+		JSONArray arrMeasures = apiService.getValueAPI(key);
+
+		dailyReport.setModuleId(moduleService.findId(key)); // set module id
+
+		dailyReport.setDate(new Date()); // set module date
+
+		// set module values
+		for (int j = 0; j < arrMeasures.length(); j++) {
+			JSONObject temp = (JSONObject) arrMeasures.get(j);
+			if (temp.get("metric").toString().equals("coverage")) {
+				dailyReport.setCoverage(Double.parseDouble(temp.get("value").toString()));
+			}
+			if (temp.get("metric").toString().equals("code_smells")) {
+				dailyReport.setCodeSmell(Integer.parseInt(temp.get("value").toString()));
+			}
+			if (temp.get("metric").toString().equals("vulnerabilities")) {
+				dailyReport.setVulnerability(Integer.parseInt(temp.get("value").toString()));
+			}
+			if (temp.get("metric").toString().equals("tests")) {
+				dailyReport.setTestcase(Integer.parseInt(temp.get("value").toString()));
+			}
+			if (temp.get("metric").toString().equals("sqale_index")) {
+				dailyReport.setTechDebt(Integer.parseInt(temp.get("value").toString()));
+			}
+		}
+		return dailyReport;
 	}
 
 	@Override

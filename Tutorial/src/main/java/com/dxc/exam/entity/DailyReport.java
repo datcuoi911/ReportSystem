@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Type;
 
 @Entity(name = "daily_report")
 public class DailyReport {
@@ -16,7 +17,8 @@ public class DailyReport {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "date")
+	@Column(name = "date_report")
+	@Type(type = "date")
 	private Date date;
 
 	@Column(name = "id_module")

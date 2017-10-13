@@ -10,7 +10,9 @@ import com.dxc.exam.entity.DailyReport;
 
 public interface DailyReportService {
 
-	public void getValues(String linkAPI) throws ParseException, IOException, JSONException;
+	public void saveOrUpdate(String linkAPI) throws ParseException, IOException, JSONException;
+
+	public DailyReport getValues(String key) throws ParseException, IOException, JSONException;
 
 	public ArrayList<DailyReport> getAll();
 }

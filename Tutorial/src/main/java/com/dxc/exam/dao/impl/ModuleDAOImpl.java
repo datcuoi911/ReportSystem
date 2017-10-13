@@ -29,11 +29,11 @@ public class ModuleDAOImpl implements ModuleDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public int findIdModule(String key) {
+	public ArrayList<Integer> getIdModule(String key) {
 		Query q = sessionFactory.getCurrentSession().createQuery("select id from module where api_key = :api_key");
 		q.setParameter("api_key", key);
 		ArrayList<Integer> arrList = (ArrayList<Integer>) q.list();
-		return arrList.get(0);
+		return arrList;
 	}
 
 	public SessionFactory getSessionFactory() {
