@@ -57,7 +57,7 @@ public class DailyReportDAOImpl implements DailyReportDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public DailyData getDailyData(int idModule) {
+	public DailyData getDailyData(int idProject) {
 
 		Query q = sessionFactory.getCurrentSession().createSQLQuery(
 				"select sum(test_case) from daily_report d, project p, module m where p.id = :id and d.date_report = :date_report and d.id_module = m.id and p.id = m.project_id");
@@ -70,27 +70,27 @@ public class DailyReportDAOImpl implements DailyReportDAO {
 		DailyData dailyData = new DailyData();
 		Query qCover = sessionFactory.getCurrentSession().createSQLQuery(
 				"select avg(coverage) from daily_report d, project p, module m where p.id = :id and d.date_report = :date_report and d.id_module = m.id and p.id = m.project_id");
-		qCover.setParameter("id", 1);
+		qCover.setParameter("id", idProject);
 		qCover.setParameter("date_report", "2017-10-16");
 
 		Query qCodeSmell = sessionFactory.getCurrentSession().createSQLQuery(
 				"select sum(code_smell) from daily_report d, project p, module m where p.id = :id and d.date_report = :date_report and d.id_module = m.id and p.id = m.project_id");
-		qCodeSmell.setParameter("id", 1);
+		qCodeSmell.setParameter("id", idProject);
 		qCodeSmell.setParameter("date_report", "2017-10-16");
 
 		Query qTechDebt = sessionFactory.getCurrentSession().createSQLQuery(
 				"select sum(technical_debt) from daily_report d, project p, module m where p.id = :id and d.date_report = :date_report and d.id_module = m.id and p.id = m.project_id");
-		qTechDebt.setParameter("id", 1);
+		qTechDebt.setParameter("id", idProject);
 		qTechDebt.setParameter("date_report", "2017-10-16");
 
 		Query qTestCase = sessionFactory.getCurrentSession().createSQLQuery(
 				"select sum(test_case) from daily_report d, project p, module m where p.id = :id and d.date_report = :date_report and d.id_module = m.id and p.id = m.project_id");
-		qTestCase.setParameter("id", 1);
+		qTestCase.setParameter("id", idProject);
 		qTestCase.setParameter("date_report", "2017-10-16");
 
 		Query qVul = sessionFactory.getCurrentSession().createSQLQuery(
 				"select sum(vulnerability) from daily_report d, project p, module m where p.id = :id and d.date_report = :date_report and d.id_module = m.id and p.id = m.project_id");
-		qVul.setParameter("id", 1);
+		qVul.setParameter("id", idProject);
 		qVul.setParameter("date_report", "2017-10-16");
 
 		ArrayList<Integer> listObjectCS = (ArrayList<Integer>) qCodeSmell.list();
@@ -98,15 +98,15 @@ public class DailyReportDAOImpl implements DailyReportDAO {
 		ArrayList<Integer> listObjectTC = (ArrayList<Integer>) qTestCase.list();
 		ArrayList<Integer> listObjectV = (ArrayList<Integer>) qVul.list();
 		ArrayList<Double> listObjectC = (ArrayList<Double>) qCover.list();
-		
+
 		dailyData.setSumCodeSmell(listObjectCS.get(0));
 		dailyData.setSumTechDebt(listObjectTD.get(0));
 		dailyData.setSumTestcase(listObjectTC.get(0));
 		dailyData.setSumVulnerability(listObjectV.get(0));
 		dailyData.setSumCoverage(listObjectC.get(0));
-		
-		System.out.println(dailyData.getSumCodeSmell());
-		
+
+		System.out.println("get Report Data");
+
 		return dailyData;
 	}
 

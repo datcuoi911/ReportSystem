@@ -40,13 +40,18 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 
 		for (String str : setKeyName) {
-			projectDAO.insert(new Project(str));
+			getProjectDAO().insert(new Project(str));
 		}
 	}
 
 	@Override
 	public ArrayList<Project> getAll() {
 		return getProjectDAO().getAll();
+	}
+	
+	@Override
+	public ArrayList<Integer> getIdProject() {
+		return getProjectDAO().getIdProject();
 	}
 
 	@Override

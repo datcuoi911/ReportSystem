@@ -37,6 +37,12 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return arrList.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Integer> getIdProject() {
+		return (ArrayList<Integer>) sessionFactory.getCurrentSession().createQuery("select id from project").list();
+	}
+
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

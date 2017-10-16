@@ -83,13 +83,11 @@ public class APIServiceImpl implements APIService {
 	@Override
 	public ArrayList<DailyData> getDailyData() {
 		ArrayList<DailyData> listDailyData = new ArrayList<DailyData>();
-		ArrayList<Integer> listIdModule = moduleService.getId();
-		for (int i = 0; i < listIdModule.size(); i++) {
-			DailyData dailyData = dailyReportService.getDailyData(listIdModule.get(i));
-			dailyData.setNameModule(moduleService.findNameModule(listIdModule.get(i)));
-			System.out.println(dailyData.getNameModule());
+		ArrayList<Integer> listIdProject = projectService.getIdProject();
+		for (int i = 0; i < listIdProject.size(); i++) {
+			DailyData dailyData = dailyReportService.getDailyData(listIdProject.get(i));
+			dailyData.setNameModule(null);
 			dailyData.setNameProject(null);
-			System.out.println(dailyData.getNameProject());
 			listDailyData.add(dailyData);
 		}
 		System.out.println(listDailyData.toString());

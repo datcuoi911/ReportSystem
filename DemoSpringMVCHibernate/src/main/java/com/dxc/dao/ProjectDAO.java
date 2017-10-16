@@ -10,5 +10,7 @@ public interface ProjectDAO {
 
 	public ArrayList<Project> getAll();
 	
+	public ArrayList<Integer> getIdProject();
+	
 	public String findNameProject(int idProject);
 }
