@@ -82,42 +82,6 @@
 
 		<!-- Content  -->
 	
-			
-		<!--Daily Report Code -->
-			<div ng-app="my-daily-report" ng-controller="dailyReportCtrl">
-			<table border="1">
-			  <tr>
-				<thead>
-					<tr>
-						<th rowspan="2">ID</th>
-						<th rowspan="2">GROUP</th>
-						<th rowspan="2">Projects</th>
-						<th colspan="5" class="metric">Metrics</th>
-					</tr>
-					<tr>
-						<th>Code Coverage<br>(AVG)</th>
-						<th>Test Case<br>(SUM)</th>
-						<th>Technical Debt (SUM)<br> MIN | HOUR | DAY</th>
-						<th>Code Smell<br>(SUM)</th>
-						<th>Vulnerabilities<br>(SUM)</th>
-					</tr>
-				</thead>
-			  </tr>
-			  <tbody>
-				  <tr ng-repeat="x in myData">
-					<td>{{ $index + 1 }}</td>
-					<td ng-if="$index==0" rowspan="{{myData.length}}">IPOS</td>
-					<td ng-click="viewChart('all', x.project)">{{ x.project }}</td>
-					<td ng-click="viewChart('coverage', x.project)">{{ x.coverage }}</td>
-					<td ng-click="viewChart('testcase', x.project)">{{ x.testcase }}</td>
-					<td ng-click="viewChart('techDebt', x.project)">{{ x.techDebt }}</td>
-					<td ng-click="viewChart('codesmell', x.project)">{{ x.codeSmell }}</td>
-					<td ng-click="viewChart('vulnerability', x.project)">{{ x.vulnerability }}</td>
-				  </tr>
-			  </tbody>
-			</table>
-		</div>
-		<!-- End Daily Report Code -->
 		
 		
 		
