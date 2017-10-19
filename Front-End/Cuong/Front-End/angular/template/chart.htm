@@ -1,0 +1,21 @@
+
+		<!-- Chart Report Code -->
+		<div ng-controller="chartCtrl"> <!-- angular/sonarqube-report-angular.js -->
+			<h1>{{chart | uppercase}} CHART - {{project_name | uppercase}}</h1>
+			
+			<!-- Draw Chart Here -->
+			<div  ng-if="chart!='all'" id="chart-{{chart}}"></div>
+			<div ng-if="chart=='all'">
+				<h3>code smell</h3>
+				<div id="chart-code_smell"></div>
+				<h3>test case</h3>		
+				<div id="chart-test_case"></div>
+				<h3>coverage</h3>		
+				<div id="chart-coverage"></div>
+				<h3>tech Debt</h3>		
+				<div id="chart-technical_debt"></div>
+				<h3>vulnerability</h3>		
+				<div id="chart-vulnerability"></div>
+			</div>
+		</div>
+		<!-- End Chart Report Code -->

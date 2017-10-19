@@ -1,0 +1,39 @@
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    background-color: #101010;
+    color: white;
+}
+
+.metric {
+    background-color: yellow;
+    color: black;
+}
+
+#chart-code_smell, #chart-test_case, #chart-coverage, #chart-technical_debt, #chart-vulnerability {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}
+
+h1 {
+	color: #0000CC;
+	text-align: center;
+}		
+
+h3 {
+	color: red;
+}
+
+.clickable {
+    cursor:pointer;
+}
