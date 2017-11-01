@@ -24,28 +24,22 @@ public class ProjectServiceImpl implements ProjectService {
 	APIService apiService;
 
 	@Override
-	public void getProject(String linkAPI) throws ParseException, IOException, JSONException {
+	public void getProject(String linkAPIHead, String linkAPIFoot) throws ParseException, IOException, JSONException {
 
 		// initializer
-		List<String> listKey = getApiService().getKeyAPI(linkAPI);
+		List<String> listKey = getApiService().getKeyAPI(linkAPIHead, linkAPIFoot);
 
 		// get project values
 		Set<String> setKeyName = new HashSet<>();
 		for (int i = 0; i < listKey.size(); i++) {
-			if (listKey.get(i).contains("%3A%2F")) {
-				String[] strList = listKey.get(i).split("%3A%2F");
-				strList[1] = strList[1].replace("-", " ");
-				setKeyName.add(strList[1]);
-			} else {
-				String[] strList = listKey.get(i).split("%3A");
-				strList[2] = strList[2].replace("-", " ");
+			String[] strList = listKey.get(i).split(":");
+			if (strList.length == 3) {
 				setKeyName.add(strList[2]);
 			}
 		}
 
 		ArrayList<Project> listProject = getProjectDAO().getAll();
-	
-		
+
 		int check = 0;
 
 		for (String tempName : setKeyName) {

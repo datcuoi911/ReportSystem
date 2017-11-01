@@ -50,10 +50,11 @@ public class RESTfulController {
 	@RequestMapping(value = "/updateSonarQube", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public void updateSonarQube() {
 		try {
-			String apiProject = env.getProperty("api.project");
-			projectService.getProject(apiProject);
-			moduleService.getModule(apiProject);
-			dailyReportService.saveOrUpdate(apiProject, new Date());
+			String apiProjectHead = env.getProperty("api.projecthead");
+			String apiProjectFoot = env.getProperty("api.projectfoot");
+			projectService.getProject(apiProjectHead, apiProjectFoot);
+			moduleService.getModule(apiProjectHead, apiProjectFoot);
+			dailyReportService.saveOrUpdate(apiProjectHead, apiProjectFoot, new Date());
 
 		} catch (IOException e) {
 			e.printStackTrace();

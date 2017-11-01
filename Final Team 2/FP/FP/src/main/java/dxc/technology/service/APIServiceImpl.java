@@ -49,28 +49,41 @@ public class APIServiceImpl implements APIService {
 	private Environment env;
 
 	@Override
-	public List<String> getKeyAPI(String linkAPI) throws IOException, ParseException, JSONException {
+	public List<String> getKeyAPI(String linkAPIHead, String linkAPIFoot)
+			throws IOException, ParseException, JSONException {
 
 		// initialier
 		List<String> listKey = new ArrayList<String>();
 
 		// get keys from API
-		HttpGet httpGetKeyAndId = new HttpGet(linkAPI);
-		try (CloseableHttpClient httpClient = HttpClients.createDefault();
-				CloseableHttpResponse response = httpClient.execute(httpGetKeyAndId);) {
-			HttpEntity entity = response.getEntity();
+		HttpGet httpGetFirst = new HttpGet(linkAPIHead + 1 + linkAPIFoot);
+		try (CloseableHttpClient httpClientFirst = HttpClients.createDefault();
+				CloseableHttpResponse responseFirst = httpClientFirst.execute(httpGetFirst);) {
+			HttpEntity entityFirst = responseFirst.getEntity();
 
-			JSONObject decoded = new JSONObject(EntityUtils.toString(entity));
+			JSONObject decodedFirst = new JSONObject(EntityUtils.toString(entityFirst));
 
-			JSONArray arrComponents = (JSONArray) decoded.get("components");
+			JSONObject arrComponentsFirst = (JSONObject) decodedFirst.get("paging");
+			int pageSize = Integer.parseInt(arrComponentsFirst.get("pageSize").toString());
+			int total = Integer.parseInt(arrComponentsFirst.get("total").toString());
 
-			for (int i = 0; i < arrComponents.length(); i++) {
-				JSONObject listComponent = (JSONObject) arrComponents.get(i);
-				String tempKey = listComponent.get("key").toString();
+			for (int i = 1; i <= total / pageSize + 1; i++) {
 
-				tempKey = tempKey.replace(":", "%3A");
-				tempKey = tempKey.replace("/", "%2F");
-				listKey.add(tempKey);
+				HttpGet httpGetKeyAndId = new HttpGet(linkAPIHead + i + linkAPIFoot);
+				try (CloseableHttpClient httpClient = HttpClients.createDefault();
+						CloseableHttpResponse response = httpClient.execute(httpGetKeyAndId);) {
+					HttpEntity entity = response.getEntity();
+
+					JSONObject decoded = new JSONObject(EntityUtils.toString(entity));
+
+					JSONArray arrComponents = (JSONArray) decoded.get("components");
+
+					for (int j = 0; j < arrComponents.length(); j++) {
+						JSONObject listComponent = (JSONObject) arrComponents.get(j);
+						String tempKey = listComponent.get("key").toString();
+						listKey.add(tempKey);
+					}
+				}
 			}
 		}
 		return listKey;

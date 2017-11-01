@@ -13,7 +13,8 @@ import dxc.technology.model.DailyData;
 
 public interface APIService {
 
-	public List<String> getKeyAPI(String linkAPI) throws IOException, ParseException, JSONException;
+	public List<String> getKeyAPI(String linkAPIHead, String linkAPIFoot)
+			throws IOException, ParseException, JSONException;
 
 	public JSONArray getValueAPI(String key) throws IOException, ParseException, JSONException;
 

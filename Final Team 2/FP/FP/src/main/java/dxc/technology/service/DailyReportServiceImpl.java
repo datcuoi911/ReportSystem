@@ -30,10 +30,11 @@ public class DailyReportServiceImpl implements DailyReportService {
 	APIService apiService;
 
 	@Override
-	public void saveOrUpdate(String linkAPI, Date date) throws ParseException, IOException, JSONException {
+	public void saveOrUpdate(String linkAPIHead, String linkAPIFoot, Date date)
+			throws ParseException, IOException, JSONException {
 
 		// initializer
-		List<String> listKey = getApiService().getKeyAPI(linkAPI);
+		List<String> listKey = getApiService().getKeyAPI(linkAPIHead, linkAPIFoot);
 
 		int check = checkDate(date);
 
@@ -55,8 +56,8 @@ public class DailyReportServiceImpl implements DailyReportService {
 
 		DailyReport dailyReport = new DailyReport();
 		JSONArray arrMeasures = getApiService().getValueAPI(key);
-		
-		 // set module id
+
+		// set module id
 		dailyReport.setModuleId(getModuleService().findId(key));
 		// set module date
 		dailyReport.setDate(new Date());

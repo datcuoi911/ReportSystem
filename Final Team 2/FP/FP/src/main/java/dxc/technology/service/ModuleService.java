@@ -8,9 +8,9 @@ import org.json.JSONException;
 
 public interface ModuleService {
 
-	public void getModule(String linkAPI) throws ParseException, IOException, JSONException;
+	public void getModule(String linkAPIHead, String linkAPIFoot) throws ParseException, IOException, JSONException;
 
 	public ArrayList<Integer> getIdModule();
-	
+
 	public int findId(String key);
 }

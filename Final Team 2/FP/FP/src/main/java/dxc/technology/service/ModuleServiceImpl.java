@@ -26,10 +26,10 @@ public class ModuleServiceImpl implements ModuleService {
 	ProjectService projectService;
 
 	@Override
-	public void getModule(String linkAPI) throws ParseException, IOException, JSONException {
+	public void getModule(String linkAPIHead, String linkAPIFoot) throws ParseException, IOException, JSONException {
 
 		// initializer
-		List<String> listKey = getApiService().getKeyAPI(linkAPI);
+		List<String> listKey = getApiService().getKeyAPI(linkAPIHead, linkAPIFoot);
 
 		// get name module
 		ArrayList<Project> listProject = getProjectService().getAll();
@@ -47,19 +47,13 @@ public class ModuleServiceImpl implements ModuleService {
 					}
 				}
 
-				if (listKey.get(i).contains("%3A%2F")) {
-					String[] strList = listKey.get(i).split("%3A%2F");
-					String[] strList2 = strList[0].toString().split("%3A");
-					strList2[1] = strList2[1].replace("-", " ");
-					module.setName(strList2[1]); // set name
-				} else {
-					String[] strList = listKey.get(i).split("%3A");
-					strList[1] = strList[1].replace("-", " ");
-					module.setName(strList[1]); // set name
+				String[] strList = listKey.get(i).split(":");
+				if (strList.length == 3) {
+					module.setName(strList[1]);
 				}
 
 				getModuleDAO().insert(module);
-			} 
+			}
 		}
 	}
 

@@ -10,7 +10,7 @@ import dxc.technology.entity.Project;
 
 public interface ProjectService {
 
-	public void getProject(String linkAPI) throws ParseException, IOException, JSONException;
+	public void getProject(String linkAPIHead, String linkAPIFoot) throws ParseException, IOException, JSONException;
 
 	public ArrayList<Project> getAll();
 }

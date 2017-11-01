@@ -13,7 +13,8 @@ import dxc.technology.model.ShortData;
 
 public interface DailyReportService {
 
-	public void saveOrUpdate(String linkAPI, Date date) throws ParseException, IOException, JSONException;
+	public void saveOrUpdate(String linkAPIHead, String linkAPIFoot, Date date)
+			throws ParseException, IOException, JSONException;
 
 	public DailyReport getValues(String key) throws ParseException, IOException, JSONException;
 
